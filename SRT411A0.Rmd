@@ -1,0 +1,238 @@
+---
+title: "SRT411A0"
+author: "Pol Govergun"
+date: "2/15/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+---
+"Username for Github account - polgovergun"
+
+"Two links that I used to help me complete the assignmnet; https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf and statmath.wu.ac.at/software/R/qfin"
+---
+
+This assignment is a short task to complete as an introduction to the R programming language, it has 14 todo examples that I have answered below, plus one last todo in the footnote of this doc "https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf". The assignment starts with 3 sections that describe how to download and install R and Rstudio, both resources are necessary to learning how to code with R. The first two sections describe advantages of R as a freeware and why it is a great resource for source coding. Furthermore, in the getting started section we learn how to configure and install Rstudio along with a breif toutorial on the layout of the console and how to navigate to workspace mode, files and plots and the editor. Additionally, in sections 2.4 and 2.5, we get a breif intro into setting working directories and installing library packages.
+
+### 3 some first examples of R commands
+
+#### 3.1 Calculator
+
+*ToDo*:
+Computing the difference between 2014 and the year you started at this university (2015), divided by the difference between 2014 ad the year I was born (1997) and then muliply the result by 100, to get the percentage of your life youve spent in college.
+
+```{r}
+(2015 - 2014) / (2014 - 1997) * 100
+```
+
+#### 3.2 Workspace
+
+*ToDo*:
+This todo is the same as the previous, except we add variables to some of the values we calculated.
+
+```{r}
+a <- 2015 - 2014
+b <- 2014 - 1997
+c <- 100
+
+a / b * c
+```
+
+#### 3.3 Scalars, vectors and matrices
+
+This section explains a bit about scalar, vector and matrice values. A scalar is a single value like A assigned to 'c' in the pervious todo. A matrice is like a table with 2 dimensional values and lastly a vector is a one dimentional structure that concatenates any defined values in the function.
+
+#### 3.4 Functions
+
+This section teaches us about how to create vectors and use functions, it gives a useful exmaple using the 'rnorm' function, which generates a random sample from a normal distribution, which you must specify, ex rnorm(10, mean=1.2). This command will generate 10 random numbers with a mean of 1.2. Furthermore, the resulting 10 numbers will automatically become a vector.
+
+*Todo*:
+Compute the sum of the vector 4,5,8 and 11, by first creating a vector and using the sum function.
+
+```{r}
+d <- c(4,5,8,11)
+sum(d)
+```
+
+#### 3.5 Plots
+
+This section teaches us about how to create a simple graph and plot 100 random numbers on this graph, with the help of the rnorm function used previously.
+
+*ToDo*:
+Plot 100 normal random numbers.
+
+```{r}
+y <- rnorm(100)
+plot(y)
+```
+
+#### 4 Help and Documentation
+
+This section teaches how a user can get help with any command in Rstudio, using the help(), function you can get a simple example and guidlines of how to use the function. Furthermore, for online web browsing help you can use the help.start() function.
+
+*ToDo*:
+Find help for the sqrt function.
+
+```{r}
+help(sqrt)
+```
+
+#### 5 Scripts
+
+This section describes the use of scripts in R as collection of multiple R commands stored in one file, usually with a .R extension. There are multiple ways to run your scripts, you can use the Rstudio windows or type CTRL + Shift + S or CTRL + ENTER.
+
+*ToDo*:
+Make a file called firstscript.R containing code that generates 100 random numbers and plots them.
+
+Firstly I typed CTRL + SHIFT + N, to create a new script file named firstscript.R and saved it in my documents. Then to run the script I typed 'source("firstscript.R")'.
+
+```{r}
+source("firstscript.R")
+```
+
+#### 6 Data Structures
+
+In the 6.1 section, this guide describes vectors in more detail, it gives diffrent ways to create vectors, such as using the seq() function and displays different calculations that are common amongst vectors.
+
+The 6.2 section teaches how matrices work and how to construct them.
+
+*ToDo*:
+Put the numbers 31 to 60 in a vector named P and then in a matrix with 6 rows and 5 columns named Q.
+
+```{r}
+P <- seq(from=31, to=60)
+P
+Q <- matrix(data=P,ncol=5,nrow=6)
+Q
+```
+
+The next section 6.3, teaches about data frames and how to use them in combination with matrices and how to create and query their values.
+
+*ToDo*:
+Make a script file which constructs three random vectors of length 100. Then make a data frame called t with three columns. Then apply the functions plot(t) and sd(t) and examine the results.
+
+```{r}
+source("dataframescript.R")
+```
+
+The next line displays the code contained in the script dataframescript.R.
+```{r}
+x1 <- rnorm(100)
+x2 <- rnorm(100)
+x3 <- rnorm(100)
+t = data.frame(a = x1, b = x1+x2, c = x1+x2+x3)
+t
+plot(t)
+```
+
+The next section 6.4, describes how to create a list using the list() function, how to print a list, how to find out whats inside your list and how to apply the values in your list. A list is more useful than a matrice or data frame because you can add as many columns as you perfer with no order or specific length.
+
+#### 7 Graphics
+
+This section describes different ways to plot vectors and different graphical designs that can be made by R, anything from a histogram to a lined graph can be made.
+
+*ToDo*:
+Add the lines above to your script from the previous todo and figure out what the rgb, lwd, pch and cex arguments mean.
+
+```{r}
+source("dataframescript.R")
+```
+
+The code that was added is visible below
+
+```{r}
+plot(t$a, type="l", ylim=range(t), lwd=3, col=rgb(1,0,0,0.3))
+lines(t$b, type="s", lwd=2, col=rgb(0.3,0.4,0.3,0.9))
+points(t$c, pch=20, cex=4, col=rgb(0,0,1,0.3))
+```
+
+Essentially, the 'cex' argument is a number assigned to it that dictates the magnified level of text and symbols relative to the default. The 'lwd' argument specifies the line width, it must be a positive number. The 'pch' argument must be assigned an integer or a single character which is used as the default in plotting points. Lastly, the 'rgb' function is specifed when you want your graph to contain colors on the red, green and blue scale, you must also assign values of color to each column.
+
+#### 8 Reading and writing data files
+
+This section specifies how to create files and interact with them using R, it describes how to read files and write into files using different read/write functions.
+
+*ToDo*:
+Make a text file called tst1.txt from the example in figure 4 and store it in your working directory. Write a script to read it, to multiply the column called g by 5 and to store it as tst2.txt.
+
+
+command: source("readwrite8.R")
+
+
+The contents of the script are show below
+
+
+r = read.table(file="tst1", header = TRUE)
+r
+w = write.table(tst1$g * 5, file="tst2")
+e = read.table(file="tst2", header = TRUE)
+e
+
+
+#### 9 Not available data
+
+*ToDo*:
+Compute the mean of the square root of a vector of 100 random numbers and see what happens
+
+```{r}
+n <- rnorm(100)
+s <- sqrt(n)
+mean(s)
+```
+
+The output displays a series of non applicable numbers. When any non-applicable number is encountered it is displayed by the 'NA' characters. You can use the option 'na.rm=TRUE' to compute a non-applicable number without displaying the 'NA'
+
+#### 10 Classes
+
+This section teaches about the different classes that R has, the three main ones are numbers, characters and POSIX, which is data and time.
+
+*ToDo*:
+Make a graph with on the x-axis: today, Sinterklaas 2014 and your next birthday and on the y-axis the number of presents you expect to recieve on each day.
+
+```{r}
+xaxis = strptime(c("20170130", "20141205", "20171024"), format="%Y%m%d")
+yaxis = c(5, 4, 10)
+plot(xaxis, yaxis)
+```
+
+#### 11 Programming tools
+
+In this section it is descibed how to create for-loops and if-else statments to either execture a command a certain amount of times or to set a conditional statements that does one thing if the condition is met and another if the condition is not met.
+
+*ToDo*:
+Make a vector from 1 to 100. Make a for-loop which runs through the whole vector. Multiply the elements which are smaller than 5 and larer than 90 with 10 and the other elements with 0.1.
+
+```{r}
+v = seq(from=1, to=100, by=1)
+s = c()
+for(i in 1:100)
+{
+  if(v[i] < 5)
+  {
+    s[i]=v[i]*10;
+  }
+  else if(v[i] > 90)
+  {
+    s[i]=v[i]*10;
+  } 
+  else
+  {
+    s[i]=v[i]*0.1;
+  }
+}
+s
+```
+
+*ToDo*:
+Write a function for the previous todo, so that you can feed it any vector you like. Use a for-loop in the function to do the computation with each element. Use the standard R function length in the specification of the counter.
+
+```{r}
+fun1 = function(arg1, arg2)
+{
+  v[i] = arg1[i];
+  for(i in length(v))
+  {
+  }
+}
+```
+
